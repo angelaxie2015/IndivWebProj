@@ -33,15 +33,29 @@ function playDrum (id){
 	}
 	sound.play();
 }
+
+function buttonAnimation(event){
+	var buttonPressed = document.querySelector("." + event);
+
+	buttonPressed.classList.add("pressed");
+
+	setTimeout(function () {
+		buttonPressed.classList.remove("pressed");
+	}, 100);
+	
+}
+
 var buttons = document.querySelectorAll(".drum");
 for(var i = 0; i < buttons.length; i++){
 	buttons[i].addEventListener("click", function () {
 		playDrum(this.innerHTML);
+		buttonAnimation(this.innerHTML);
 		
 	});
 }
 
 document.addEventListener("keydown", function (event) {
 	playDrum(event.key);
+	buttonAnimation(event.key);
 	
 });
